@@ -15,6 +15,8 @@ public enum ErrorCode {
     TOKEN_VERIFICATION_FAILED("TKN_004", "토큰 처리 실패"),
     TOKEN_ALREADY_USED("TKN_005", "이미 사용된 토큰입니다"),
     TOKEN_NOT_FOUND("TKN_006", "토큰 조회 실패"),
+    TOKEN_EXPIRED("TKN_008", "토큰의 유효기간이 만료되었습니다"),
+
 
 
     // 자체 에러

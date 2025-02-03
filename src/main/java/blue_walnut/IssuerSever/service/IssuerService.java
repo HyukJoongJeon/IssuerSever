@@ -5,6 +5,7 @@ import blue_walnut.IssuerSever.domain.Approval;
 import blue_walnut.IssuerSever.domain.IssuerLog;
 import blue_walnut.IssuerSever.exception.ApprovalException;
 import blue_walnut.IssuerSever.exception.ErrorCode;
+import blue_walnut.IssuerSever.model.CardInfo;
 import blue_walnut.IssuerSever.model.PaymentReq;
 import blue_walnut.IssuerSever.model.PaymentRes;
 import blue_walnut.IssuerSever.model.TokenReq;
@@ -29,6 +30,12 @@ public class IssuerService {
     private final IssuerLogService issuerLogService;
     private final ApprovalRepository approvalRepository;
 
+    public Boolean validateCard(CardInfo cardInfo) {
+        // 카드정보 복호화후 DB에서 조회후 유효성 체크를 해야하지만
+        // 무조건 TRUE 리턴
+        return true;
+    }
+
     public PaymentRes payment(PaymentReq req)  {
         // 중복 결제 요청 처리
         if (isDuplicateRequest(req.trTid())) {
@@ -41,7 +48,6 @@ public class IssuerService {
         IssuerLog issuerLog = createIssuerLog(approval);
 
         issuerLogService.updateStatus(approval, issuerLog,  ServiceType.APPROVAL, StatusType.WT, null);
-
         try {
             verifyToken(new TokenReq(req.token(), req.userCi(), false), approval);
         } catch (ApprovalException e) {
@@ -118,7 +124,7 @@ public class IssuerService {
                 .errMsg("승인 성공")
                 .build();
     }
-    private void processPayment() {
+    private void test() {
             throw new ApprovalException(ErrorCode.APPROVAL_FAILED);
     }
 }

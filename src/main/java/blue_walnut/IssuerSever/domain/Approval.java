@@ -33,8 +33,6 @@ public class Approval {
     private ActionType actionType;
 
     private String errMsg;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 }
